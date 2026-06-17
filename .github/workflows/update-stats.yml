@@ -1,0 +1,83 @@
+name: Update Site Group Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 每天 UTC 00:00 == 北京 08:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch site group stats
+        id: stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          REPOS=("skill" "solar" "nav" "newsnow" "ai-trend-publish" "api-token")
+          echo "[" > stats.json
+          FIRST=1
+          MD_BLOCK="| 仓库 | ⭐ Stars | 🍴 Forks | 📋 Issues | 🕐 Last Push |\n|---|---|---|---|---|"
+          for repo in "${REPOS[@]}"; do
+            DATA=$(curl -s -H "Authorization: token $GH_TOKEN" \
+              "https://api.github.com/repos/anbeime/$repo")
+            STARS=$(echo "$DATA" | jq -r '.stargazers_count')
+            FORKS=$(echo "$DATA" | jq -r '.forks_count')
+            ISSUES=$(echo "$DATA" | jq -r '.open_issues_count')
+            PUSHED=$(echo "$DATA" | jq -r '.pushed_at' | cut -dT -f1)
+            if [ $FIRST -eq 0 ]; then echo "," >> stats.json; fi
+            FIRST=0
+            cat >> stats.json <<EOF
+          {
+            "repo": "$repo",
+            "stars": $STARS,
+            "forks": $FORKS,
+            "open_issues": $ISSUES,
+            "last_push": "$PUSHED"
+          }
+          EOF
+            MD_BLOCK="${MD_BLOCK}\n| [\`$repo\`](https://github.com/anbeime/$repo) | $STARS | $FORKS | $ISSUES | $PUSHED |"
+          done
+          echo "]" >> stats.json
+          # 把表格写入临时文件
+          printf "%b" "$MD_BLOCK" > stats_table.md
+          echo "" >> stats_table.md
+          echo "" >> stats_table.md
+          echo "_最近更新：$(date -u +'%Y-%m-%d %H:%M UTC')_" >> stats_table.md
+
+      - name: Inject stats table into README
+        run: |
+          python3 <<'PY'
+          import re
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          with open('stats_table.md', 'r', encoding='utf-8') as f:
+              table = f.read()
+          new = re.sub(
+              r'<!-- STATS:START -->.*?<!-- STATS:END -->',
+              f'<!-- STATS:START -->\n{table}<!-- STATS:END -->',
+              content,
+              flags=re.DOTALL
+          )
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(new)
+          PY
+          rm -f stats_table.md
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md stats.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "chore: auto-update site group stats [skip ci]"
+          git push
