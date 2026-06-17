@@ -36,7 +36,16 @@
 ## 📊 站群实时数据
 
 <!-- STATS:START -->
-> 数据每天 UTC 00:00 自动更新，最近一次更新见 [`stats.json`](./stats.json)。
+| 仓库 | ⭐ Stars | 🍴 Forks | 📋 Issues | 🕐 Last Push |
+|---|---|---|---|---|
+| [`skill`](https://github.com/anbeime/skill) | 1764 | 186 | 4 | 2026-06-17 |
+| [`solar`](https://github.com/anbeime/solar) | 0 | 0 | 0 | 2026-06-17 |
+| [`nav`](https://github.com/anbeime/nav) | 0 | 0 | 0 | 2026-06-17 |
+| [`newsnow`](https://github.com/anbeime/newsnow) | 0 | 0 | 0 | 2026-06-17 |
+| [`ai-trend-publish`](https://github.com/anbeime/ai-trend-publish) | 5 | 3 | 0 | 2026-06-17 |
+| [`api-token`](https://github.com/anbeime/api-token) | 10 | 2 | 0 | 2026-06-17 |
+
+_最近更新：2026-06-17 02:15 UTC_
 <!-- STATS:END -->
 
 ---
