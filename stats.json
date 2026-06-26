@@ -1,10 +1,10 @@
 [
 {
   "repo": "skill",
-  "stars": 2324,
-  "forks": 243,
+  "stars": 2513,
+  "forks": 263,
   "open_issues": 4,
-  "last_push": "2026-06-24"
+  "last_push": "2026-06-25"
 }
 ,
 {
@@ -12,7 +12,7 @@
   "stars": 0,
   "forks": 0,
   "open_issues": 0,
-  "last_push": "2026-06-25"
+  "last_push": "2026-06-26"
 }
 ,
 {
@@ -36,13 +36,13 @@
   "stars": 10,
   "forks": 3,
   "open_issues": 0,
-  "last_push": "2026-06-25"
+  "last_push": "2026-06-26"
 }
 ,
 {
   "repo": "api-token",
-  "stars": 11,
-  "forks": 2,
+  "stars": 12,
+  "forks": 3,
   "open_issues": 0,
   "last_push": "2026-06-17"
 }
