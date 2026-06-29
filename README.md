@@ -38,14 +38,14 @@
 <!-- STATS:START -->
 | 仓库 | ⭐ Stars | 🍴 Forks | 📋 Issues | 🕐 Last Push |
 |---|---|---|---|---|
-| [`skill`](https://github.com/anbeime/skill) | 2617 | 275 | 4 | 2026-06-27 |
-| [`solar`](https://github.com/anbeime/solar) | 0 | 0 | 0 | 2026-06-28 |
+| [`skill`](https://github.com/anbeime/skill) | 2685 | 281 | 4 | 2026-06-28 |
+| [`solar`](https://github.com/anbeime/solar) | 0 | 0 | 0 | 2026-06-29 |
 | [`nav`](https://github.com/anbeime/nav) | 1 | 0 | 0 | 2026-06-17 |
 | [`newsnow`](https://github.com/anbeime/newsnow) | 0 | 0 | 0 | 2026-06-17 |
-| [`ai-trend-publish`](https://github.com/anbeime/ai-trend-publish) | 10 | 3 | 0 | 2026-06-28 |
+| [`ai-trend-publish`](https://github.com/anbeime/ai-trend-publish) | 10 | 3 | 0 | 2026-06-29 |
 | [`api-token`](https://github.com/anbeime/api-token) | 12 | 3 | 0 | 2026-06-17 |
 
-_最近更新：2026-06-28 04:20 UTC_
+_最近更新：2026-06-29 04:27 UTC_
 <!-- STATS:END -->
 
 ---
